@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.spidertech.study.entities.Category;
 import com.spidertech.study.entities.Order;
+import com.spidertech.study.entities.OrderItem;
 import com.spidertech.study.entities.Product;
 import com.spidertech.study.entities.User;
 import com.spidertech.study.entities.enums.OrderStatus;
 import com.spidertech.study.repositories.CategoryRepository;
+import com.spidertech.study.repositories.OrderItemRepository;
 import com.spidertech.study.repositories.OrderRepository;
 import com.spidertech.study.repositories.ProductRepository;
 import com.spidertech.study.repositories.UserRepository;
@@ -35,10 +37,17 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private OrderItemRepository orderItemRepository;
+	
+	
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
+		
+		
+		
 		
 		Category cat1 = new Category(null, "Electronics");
 		Category cat2 = new Category(null, "Books");
@@ -78,6 +87,12 @@ public class TestConfig implements CommandLineRunner {
 		
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p4.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 	}
 	
 	
